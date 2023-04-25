@@ -1,0 +1,15 @@
+package ddddd;
+
+public class d94 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a=15,b=10;
+		int min=(a<b)?a:b;//if a<b min=a, else min=b
+		int max=(a>b)?a:b;//if a>b max=a, else max=b
+		
+		System.out.println(min);
+		System.out.println(max);
+	}
+
+}
