@@ -1,0 +1,30 @@
+package ddddd;
+
+import java.util.ArrayList;
+
+public class d103 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+ArrayList<String> food=new ArrayList<String>();
+food.add("pizza");
+food.add("hamburger");
+food.add("hotdog");
+
+food.set(0,"sushi");
+
+for(int i=0;i<food.size();i++) {
+	System.out.println(food.get(i));
+}
+ArrayList<Integer> chisla=new ArrayList<Integer>();
+chisla.add(132);
+chisla.add(432);
+chisla.add(789);
+
+for(int i=0;i<chisla.size();i++) {
+	System.out.println(chisla.get(i));
+}
+
+	}
+
+}
