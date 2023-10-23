@@ -1,0 +1,63 @@
+package ddddd;
+
+public class d107 {
+
+	//<word>::=AA|AB|A<word>A|A<word>B
+	public static boolean isWord1(String s) 
+	{
+		switch(s.length()) {
+		case 0:
+		case 1: return false;
+		case 2: return s.equals("AA") ||s.equals("AB");
+		case 3: return false;
+		}
+		return s.charAt(0)=='A' && (s.charAt(s.length()-1)=='A' || s.charAt(s.length()-1)=='B') && isWord1(s.substring(1,s.length()-1));
+	}
+	
+	//<word>::=1|<word>0|<word>0<word>
+	public static boolean isWord2(String s) {
+		switch(s.length()) {
+		case 0: return false;
+		case 1: return s.equals("1");
+		case 2: return s.equals("10");
+		case 3: return s.equals("110")|| s.equals("101");
+		}
+		if (s.charAt(s.length()-1)=='0'&&isWord2(s.substring(0,s.length()-1)))return true;
+				for(int i=0;i<s.length();i++) {
+					if(s.charAt(i)=='0'&&isWord2(s.substring(0,i))&&isWord2(s.substring(i+1)))return true; 
+				}
+		return false;
+	}
+	
+	//<word>::=ABC|<word>B|C<word>A|AC<word>
+	public static boolean isWord3(String s) {
+		switch (s.length()) {
+		case 0:
+		case 1:
+		case 2:return false;
+		case 3:return s.equals("ABC");
+		}
+		return (s.charAt(s.length()-1)=='B'&&isWord3(s.substring(0,s.length()-1)))
+				|| (s.charAt(0)=='C'&&s.charAt(s.length()-1)=='A'&&isWord3(s.substring(1,s.length()-1)))
+				|| (s.substring(0,2).equals("AC")&&isWord3(s.substring(2)));
+	}
+	//<word>::=10|11|1<word><word>0
+	public static boolean isWord4(String s) {
+		switch (s.length()) 
+		{
+		case 0: 
+		case 1: return false;
+		case 2: return s.equals("10")||s.equals("11");
+		case 3:return false;
+		}
+		 for(int i=1;i<s.length()-2;i++) {
+		if(s.charAt(0)=='1' && s.charAt(s.length()-1)=='0' && isWord4(s.substring(1,i)) && isWord4(s.substring(i,s.length()-1)))return true;
+	}
+		 return false;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+System.out.println(isWord4("110110"));
+	}
+
+}
