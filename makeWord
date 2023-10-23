@@ -1,0 +1,24 @@
+package ddddd;
+
+public class d109 {
+public static void makeWord(int len) {
+	make(len,"A");
+	make(len,"BA");
+}
+private static void make(int len, String w) {
+	int L=w.length();
+	if(L>len)return;
+	if(L==len) 
+	{
+	System.out.println(w);
+	return;
+	}
+	make(len,"B"+w);
+	make(len,"AA"+w+"B");
+}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+makeWord(6);
+	}
+
+}
