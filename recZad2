@@ -1,0 +1,55 @@
+package ddddd;
+
+public class d108 {
+//<word>::=0|11|<word>0|10<word>01
+	public static boolean isWordE1(String s) {
+		switch (s.length()) {
+		case 0: return false;
+		case 1:return s.equals("0");
+		case 2:return s.equals("11") || s.equals("00");
+		}
+		return (s.charAt(s.length()-1)=='0'&&isWordE1(s.substring(0,s.length()-1)))
+				||(s.substring(0,2).equals("10")&&s.substring(s.length()-2).equals("01")&&isWordE1(s.substring(2,s.length()-2)));
+	}
+	//<word>::=C|AB|BA|A<word>|B<word>C
+	public static boolean isWordE2(String s) {
+		switch (s.length()) {
+		case 0:return false;
+		case 1: return s.equals("C");
+		case 2: return s.equals("AB")||s.equals("BA")||s.equals("AC");
+		}
+		return (s.charAt(0)=='A'&&isWordE2(s.substring(1)))
+		|| (s.charAt(0)=='B'&&s.charAt(s.length()-1)=='C'&&isWordE2(s.substring(1,s.length()-1)));
+	}
+	
+	
+	//системата
+	public static boolean isWord(String s) {
+		switch(s.length())
+		{
+			case 0:return false;
+			case 1: return s.equals("0");
+		}
+		return (s.charAt(s.length()-1)=='0'&&isWord(s.substring(0,s.length()-1)))
+		||(s.charAt(s.length()-1)=='1'&&isWord1(s.substring(0,s.length()-1)));
+	}
+	public static boolean isWord1(String s) {
+		switch(s.length())
+		{
+			case 0:return false;
+			case 1: return s.equals("1");
+		}
+		return (s.charAt(s.length()-1)=='1'&&isWord(s.substring(0,s.length()-1)))
+		|| (s.charAt(s.length()-1)=='0'&&isWord2(s.substring(0,s.length()-1)));
+	}
+	public static boolean isWord2(String s) {
+		if(s.length()==0)return false;
+		return (s.charAt(s.length()-1)=='0'&&isWord1(s.substring(0,s.length()-1)))
+		|| (s.charAt(s.length()-1)=='1'&&isWord2(s.substring(0,s.length()-1)));
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+System.out.println(isWord("011100100"));
+	}
+
+}
