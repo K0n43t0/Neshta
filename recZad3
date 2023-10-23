@@ -1,0 +1,28 @@
+package ddddd;
+
+public class d110 {
+	/*
+	   <word1>::=A|BAC|ABC|<word1>B|C<word1>C
+	   <word2>::=1|101|0<word2>1|1<word2><word2>
+	*/
+	public static boolean isWord2(String w) {
+		int L=w.length();
+		switch(L) {
+		case 0:return false;
+		case 1:return w.equals("1");
+		case 2:return false;
+		case 3: return w.equals("101") || w.equals("011") || w.equals("111");
+		}
+		if(w.charAt(0)=='0'&&w.charAt(L-1)=='1'&&isWord2(w.substring(1,L-1)))return true;
+		if(w.charAt(0)!='1')return false;
+		for(int i=1;i<L-1;i++) {
+			if(isWord2(w.substring(0,i))&&isWord2(w.substring(i)))return true;
+		}
+		return false;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
